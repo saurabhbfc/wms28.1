@@ -61,7 +61,8 @@ const mongodbUrl= process.env.MONGODB_URL || 'mongodb+srv://Saurabh:Saurabh@123@
 // 	useCreateIndex:true
 // }).catch(error => console.log(error.reason));
 
-var MongoClient = require('mongodb').MongoClient;
+import MongoClient from 'mongodb';
+//import Axios from 'axios';
 var url = process.env.MONGODB_URL || 'mongodb+srv://Saurabh:Saurabh@123@cluster0.xavdk.mongodb.net/wms?retryWrites=true&w=majority';
 
 MongoClient.connect(url, function(err, db) {

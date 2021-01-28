@@ -912,6 +912,24 @@ var model = mongoose.model('folio_cams', foliocams, 'folio_cams');
 
  })
 
+
+app.post("/api/savetranscams", function (req, res) {
+    var model = mongoose.model('trans_cams', transcams, 'trans_cams');
+    for (i = 0; i < req.body.length; i++) {
+        var mod = new model(req.body[i]);
+        mod.save(function (err, data) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                //res.send({data:"Record has been Inserted..!!"});
+                //console.log("foliokarvy="+foliofranklin)
+                console.log(data);
+            }
+        });
+    }
+})
+
 app.post("/api/savefoliokarvy", function (req, res) {
     var model = mongoose.model('folio_karvy', foliokarvy, 'folio_karvy');
     for (i = 0; i < req.body.length; i++) {
@@ -940,23 +958,6 @@ app.post("/api/savefoliofranklin", function (req, res) {
             else {
                 //res.send({data:"Record has been Inserted..!!"});
                 console.log("foliokarvy="+foliofranklin)
-                console.log(data);
-            }
-        });
-    }
-})
-
-app.post("/api/savetranscams", function (req, res) {
-    var model = mongoose.model('trans_cams', transcams, 'trans_cams');
-    for (i = 0; i < req.body.length; i++) {
-        var mod = new model(req.body[i]);
-        mod.save(function (err, data) {
-            if (err) {
-                res.send(err);
-            }
-            else {
-                //res.send({data:"Record has been Inserted..!!"});
-                //console.log("foliokarvy="+foliofranklin)
                 console.log(data);
             }
         });

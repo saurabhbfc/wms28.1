@@ -843,7 +843,8 @@ app.post("/api/savefoliocamsold", function (req, res) {
 app.post("/api/savefoliocams", function (req, res) {
 var model = mongoose.model('folio_cams', foliocams, 'folio_cams');
     for (i = 0; i < req.body.length; i++) {   
-       model.updateMany(
+	    var mod = new model(req.body[i]);
+       mod.updateMany(
                     { pan_no: req.body[i].pan_no , product: req.body[i].product }, 
                       {$set: 
                         { amc_code : req.body[i].amc_code ,

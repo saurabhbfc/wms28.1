@@ -878,7 +878,7 @@ var model = mongoose.model('folio_cams', foliocams, 'folio_cams');
 
  })
 
- app.post("/api/savetranscams", function (req, res) {
+ app.post("/api/savetranscams-tetete", function (req, res) {
 	 var model = mongoose.model('trans_cams', transcams, 'trans_cams');
     for (i = 0; i < req.body.length; i++) {   
        model.updateMany(
@@ -946,7 +946,7 @@ app.post("/api/savefoliofranklin", function (req, res) {
     }
 })
 
-app.post("/api/savetranscamsold", function (req, res) {
+app.post("/api/savetranscams", function (req, res) {
     var model = mongoose.model('trans_cams', transcams, 'trans_cams');
     for (i = 0; i < req.body.length; i++) {
         var mod = new model(req.body[i]);

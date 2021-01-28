@@ -61,7 +61,7 @@ const mongodbUrl= process.env.MONGODB_URL || 'mongodb+srv://Saurabh:Saurabh@123@
 // 	useCreateIndex:true
 // }).catch(error => console.log(error.reason));
 
-import MongoClient 'mongodb.MongoClient';
+//import MongoClient 'mongodb.MongoClient';
 // var url = "mongodb://localhost:27017/mytestingdb";
 
 MongoClient.connect(mongodbUrl, function(err, db) {

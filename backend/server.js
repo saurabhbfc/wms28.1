@@ -841,8 +841,9 @@ app.post("/api/savefoliocamsold", function (req, res) {
 })
 
 app.post("/api/savefoliocams", function (req, res) {
+var model = mongoose.model('folio_cams', foliocams, 'folio_cams');
     for (i = 0; i < req.body.length; i++) {   
-       db.collection('folio_cams').updateMany(
+       model.updateMany(
                     { pan_no: req.body[i].pan_no , product: req.body[i].product }, 
                       {$set: 
                         { amc_code : req.body[i].amc_code ,
@@ -877,8 +878,9 @@ app.post("/api/savefoliocams", function (req, res) {
  })
 
  app.post("/api/savetranscams", function (req, res) {
+	 var model = mongoose.model('trans_cams', transcams, 'trans_cams');
     for (i = 0; i < req.body.length; i++) {   
-       db.collection('trans_cams').updateMany(
+       model.updateMany(
                     { trxnno: req.body[i].trxnno }, 
                       {$set: 
                         { folio_no : req.body[i].folio_no ,
@@ -994,103 +996,7 @@ app.post("/api/savetransfranklin", function (req, res) {
     }
 })
 
-app.post("/api/Updatecamsnav", function(req, res) {
-    var model = mongoose.model('cams_nav', cams_navSchema, 'cams_nav');  
-    var i;
-for (i = 0; i < req.body.length; i++) {   
-  // model.find({trxnno : req.body[i].trxnno}).exec(function(err, newdata) {
-  //  if (!newdata.length){   
-        //console.log("length="+newdata.length);  
-        var mod = new model(req.body[i]);
-        mod.save(function (err, data) {
-            if (err) {
-                res.send(err);
-            }
-            else {
-                console.log(data);
-                //res.send({data:"Record has been Inserted..!!"});
-            }
-        });
 
-/*    } else {
-
-        let folio_no="";
-        var data = { $set:{ "folio_no" : req.body[i].folio_no ,
-            "scheme" : req.body[i].scheme , inv_name : req.body[i].inv_name ,
-            traddate: req.body[i].traddate ,
-            units: req.body[i].units,
-            amount: req.body[i].amount ,
-             trxn_nature: req.body[i].trxn_nature,
-            scheme_type: req.body[i].scheme_type,
-            pan: req.body[i].pan,
-            trxn_type_flag: req.body[i].trxn_type_flag }  }
-            
-        db.cams_nav.update({}, data,{multi:true}, (err , collection) => {
-          if (err) throw err;
-           console.log('Name exists already3='+collection);
-        });
-        
-    }  */
- // });
-}
-
-})
-
-
-//api for Update data from database
-app.post("/api/Updatedata", function (req, res) {
-    for (i = 0; i < req.body.length; i++) {   
-       db.collection('cams_nav').findAndModify(
-                    {trxnno: req.body[i].trxnno}, // query
-                    [['_id','asc']],  // sort order
-                    {$set: { folio_no : req.body[i].folio_no ,
-                        scheme : req.body[i].scheme ,
-                        inv_name : req.body[i].inv_name ,
-                        traddate: req.body[i].traddate ,
-                        units: req.body[i].units,
-                        amount: req.body[i].amount ,
-                        trxn_nature: req.body[i].trxn_nature ,
-                        scheme_type: req.body[i].scheme_type ,
-                        pan: req.body[i].pan ,
-                        trxn_type_flag: req.body[i].trxn_type_flag 
-                        }}, // replacement, replaces only the field "hi"
-                    {}, // options
-                    function(err, object) {
-                        if (err){
-                            console.warn(err.message);  // returns error if no matching object found
-                        }else{
-                            console.dir("successfully");
-                            //console.dir(object);
-                        }
-                    })
-}
-
- })
-
- app.post("/api/Updateinsertdata", function (req, res) {
-    for (i = 0; i < req.body.length; i++) {   
-       db.collection('cams_nav').updateMany(
-                    { name : req.body[i].name}, 
-                      {$set: { name : req.body[i].name ,
-                        pin : req.body[i].pin ,
-                        ages: req.body[i].ages ,
-                        addres : req.body[i].addres ,
-                    }}, 
-                    {
-                        "upsert":true
-                     }, // options
-                    function(err, object) {
-                        if (err){
-                            console.warn(err.message);  // returns error if no matching object found
-                        }else{
-                            console.dir("successfully");
-                            //console.dir(object);
-                        }
-                    })
-                  //  console.dir("qry="+gg)
-}
-
- })
 
 // call by default index.html page
 app.get("*", function (req, res) {

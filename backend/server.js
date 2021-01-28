@@ -824,7 +824,7 @@ app.post("/api/savecamstrans", function (req, res) {
     }
 })
 
-app.post("/api/savefoliocamsold", function (req, res) {
+app.post("/api/savefoliocams", function (req, res) {
     var model = mongoose.model('folio_cams', foliocams, 'folio_cams');
     for (i = 0; i < req.body.length; i++) {
         var mod = new model(req.body[i]);
@@ -840,7 +840,7 @@ app.post("/api/savefoliocamsold", function (req, res) {
     }
 })
 
-app.post("/api/savefoliocams", function (req, res) {
+app.post("/api/savefoliocamsoooo", function (req, res) {
 var model = mongoose.model('folio_cams', foliocams, 'folio_cams');
     for (i = 0; i < req.body.length; i++) {   
 	    var mod = new model(req.body[i]);

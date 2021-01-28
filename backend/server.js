@@ -55,11 +55,23 @@ dotenv.config();
 
 const mongodbUrl= process.env.MONGODB_URL || 'mongodb+srv://Saurabh:Saurabh@123@cluster0.xavdk.mongodb.net/wms?retryWrites=true&w=majority' ;
 
-var db=mongoose.connect(mongodbUrl, {
-	useNewUrlParser:true,
-	useUnifiedTopology: true,
-	useCreateIndex:true
-}).catch(error => console.log(error.reason));
+// var db=mongoose.connect(mongodbUrl, {
+// 	useNewUrlParser:true,
+// 	useUnifiedTopology: true,
+// 	useCreateIndex:true
+// }).catch(error => console.log(error.reason));
+
+import MongoClient 'mongodb.MongoClient';
+// var url = "mongodb://localhost:27017/mytestingdb";
+
+MongoClient.connect(mongodbUrl, function(err, db) {
+  if (err) throw err;
+  db.collection("customers").findOne({}, function(err, result) {
+    if (err) throw err;
+    console.log(result.name);
+    db.close();
+  });
+});
 
 
 
